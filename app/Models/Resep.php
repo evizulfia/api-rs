@@ -9,4 +9,6 @@ class Resep extends Model
 {
     use HasFactory;
     protected $table = "resep";
+    protected $primaryKey = 'id_resep';
+    public $timestamps = false;
 }

@@ -39,6 +39,14 @@ class DokterController extends Controller
     public function store(Request $request)
     {
         //
+        $dokter = new Dokter();
+        $dokter->id_dokter      = $request->id_dokter;
+        $dokter->nama_dokter    = $request->nama_dokter;
+        $dokter->spesialisasi   = $request->spesialisasi;
+        $dokter->no_telepon     = $request->no_telepon;
+        $dokter->save();
+
+        return $dokter;
     }
 
     /**
@@ -61,6 +69,7 @@ class DokterController extends Controller
     public function edit($id)
     {
         //
+
     }
 
     /**
@@ -73,6 +82,16 @@ class DokterController extends Controller
     public function update(Request $request, $id)
     {
         //
+        
+        
+        $dokter = Dokter::where('id_dokter',$id)->first();
+
+        $dokter->nama_dokter    = $request->nama_dokter;
+        $dokter->spesialisasi   = $request->spesialisasi;
+        $dokter->no_telepon     = $request->no_telepon;
+        $dokter->save();
+
+        return $dokter;
     }
 
     /**
@@ -84,5 +103,8 @@ class DokterController extends Controller
     public function destroy($id)
     {
         //
+        $dokter =  Dokter::where('id_dokter',$id)->first();
+        $dokter->delete();
+
     }
 }

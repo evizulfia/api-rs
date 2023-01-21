@@ -9,4 +9,6 @@ class RekamMedis extends Model
 {
     use HasFactory;
     protected $table = "rekam_medis";
+    protected $primaryKey = 'id_rekam_medis';
+    public $timestamps = false;
 }

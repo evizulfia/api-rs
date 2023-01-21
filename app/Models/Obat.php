@@ -10,4 +10,6 @@ class Obat extends Model
     use HasFactory;
 
     protected $table = "obat";
+    protected $primaryKey = 'id_obat';
+    public $timestamps = false;
 }

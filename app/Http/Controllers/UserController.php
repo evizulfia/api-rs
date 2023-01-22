@@ -17,12 +17,17 @@ class UserController extends Controller
     {
         //
         
-        $email = $request->email;
+        $username = $request->username;
         $password = $request->password;
-        $user = User::where('email', '=', $email)->first();   //get db User data   
-
-            if(Hash::check($password, $user->password)) {   
-                return $user;
+        // return $request->all();
+        $user = User::where('username', '=', $username)->where('password', $password)->first();   //get db User data   
+        // return $user;
+            if($user) {   
+                return array(
+                    'status' => '200',
+                    'message' => 'login sukses',
+                    'data' => $user
+                );
             } else {
                 return array(
                     'status' => '400',

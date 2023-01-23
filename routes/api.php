@@ -42,3 +42,11 @@ Route::post('/pasien-store', [PasienController::class, 'store']);
 Route::post('/pasien-update/{id}', [PasienController::class, 'update']);
 Route::delete('/pasien-destroy/{id}', [PasienController::class, 'destroy']);
 Route::get('/pasien-search', [PasienController::class, 'search']);
+
+Route::get('/rekammedis', [RekamMedisController::class, 'index']);
+Route::post('/rekammedis-store', [RekamMedisController::class, 'store']);
+Route::post('/rekammedis-update/{id}', [RekamMedisController::class, 'update']);
+Route::delete('/rekammedis-destroy/{id}', [RekamMedisController::class, 'destroy']);
+Route::get('/rekammedis-search', [RekamMedisController::class, 'search']);
+
+

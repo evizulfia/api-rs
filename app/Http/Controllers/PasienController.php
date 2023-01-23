@@ -27,6 +27,7 @@ class PasienController extends Controller
                         ->orWhere('id_pasien', 'like', '%'.$request->search.'%')
                         ->orWhere('alamat', 'like', '%'.$request->search.'%')
                         ->orWhere('jenis_kelamin', 'like', '%'.$request->search.'%')
+                        ->orWhere('tanggal_lahir', 'like', '%'.$request->search.'%')
                         ->orWhere('no_telepon', 'like', '%'.$request->search.'%')
                         ->get();
 

@@ -46,7 +46,7 @@ class RekamMedisController extends Controller
         $rekam_medis = RekamMedis::where('id_rekam_medis', $id_rekam_medis)->first();
 
         $dokter = Dokter::where('id_dokter', $request->id_dokter)->first();
-        $pasien = Pasien::where('id_dokter', $request->id_dokter)->first();
+        $pasien = Pasien::where('id_pasien', $request->id_pasien)->first();
 
         if(!$dokter){
             return array(

@@ -49,4 +49,7 @@ Route::post('/rekammedis-update/{id}', [RekamMedisController::class, 'update']);
 Route::delete('/rekammedis-destroy/{id}', [RekamMedisController::class, 'destroy']);
 Route::get('/rekammedis-search', [RekamMedisController::class, 'search']);
 
+Route::get('/laporan', [TransactionController::class, 'index']);
+Route::get('/laporan-search', [TransactionController::class, 'search']);
+
 

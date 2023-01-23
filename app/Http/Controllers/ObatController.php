@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Obat;
 use Illuminate\Http\Request;
 
 class ObatController extends Controller
@@ -14,6 +15,9 @@ class ObatController extends Controller
     public function index()
     {
         //
+        $obat = Obat::all();
+
+        return $obat;
     }
 
     /**
@@ -35,6 +39,39 @@ class ObatController extends Controller
     public function store(Request $request)
     {
         //
+        $id_obat = $request->id_obat;
+
+        $obat = Obat::where('id_obat', $id_obat)->first();
+
+        if($obat){
+            $obat->nama_obat    = $request->nama_obat;
+            $obat->harga        = $request->harga;
+            $obat->satuan       = $request->satuan;
+            $obat->save();
+    
+            
+            return array(
+                'status' => '200',
+                'message' => 'update obat sukses',
+                'data' => $obat
+            );
+
+        }else{
+            $obat = new Obat();
+            $obat->id_obat      = $request->id_obat;
+            $obat->nama_obat    = $request->nama_obat;
+            $obat->harga        = $request->harga;
+            $obat->satuan       = $request->satuan;
+            $obat->save();
+    
+            
+            return array(
+                'status' => '200',
+                'message' => 'insert obat sukses',
+                'data' => $obat
+            );
+
+        }
     }
 
     /**
@@ -79,6 +116,17 @@ class ObatController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $obat =  Obat::where('id_obat',$id)->first();
+        if($obat->delete()){
+            return array(
+                'status' => '200',
+                'message' => 'delete obat sukses'
+            );
+        }else{
+            return array(
+                'status' => '500',
+                'message' => 'delete error'
+            );
+        }
     }
 }

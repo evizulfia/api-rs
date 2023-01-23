@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pasien;
 use Illuminate\Http\Request;
 
 class PasienController extends Controller
@@ -14,6 +15,9 @@ class PasienController extends Controller
     public function index()
     {
         //
+        $pasien = Pasien::all();
+        return $pasien;
+
     }
 
     /**
@@ -35,6 +39,43 @@ class PasienController extends Controller
     public function store(Request $request)
     {
         //
+        $id_pasien = $request->id_pasien;
+
+        $pasien = Pasien::where('id_pasien', $id_pasien)->first();
+
+        if($pasien){
+            $pasien->nama_pasien    = $request->nama_pasien;
+            $pasien->alamat              = $request->alamat;
+            $pasien->tanggal_lahir       = $request->tanggal_lahir;
+            $pasien->jenis_kelamin       = $request->jenis_kelamin;
+            $pasien->no_telepon          = $request->no_telepon;
+            $pasien->save();
+    
+            
+            return array(
+                'status' => '200',
+                'message' => 'update pasien sukses',
+                'data' => $pasien
+            );
+
+        }else{
+            $pasien = new Pasien();
+            $pasien->id_pasien      = $request->id_pasien;
+            $pasien->nama_pasien    = $request->nama_pasien;
+            $pasien->alamat              = $request->alamat;
+            $pasien->tanggal_lahir       = $request->tanggal_lahir;
+            $pasien->jenis_kelamin       = $request->jenis_kelamin;
+            $pasien->no_telepon          = $request->no_telepon;
+            $pasien->save();
+    
+            
+            return array(
+                'status' => '200',
+                'message' => 'insert pasien sukses',
+                'data' => $pasien
+            );
+
+        }
     }
 
     /**
@@ -80,5 +121,17 @@ class PasienController extends Controller
     public function destroy($id)
     {
         //
+        $pasien =  Pasien::where('id_pasien',$id)->first();
+        if($pasien->delete()){
+            return array(
+                'status' => '200',
+                'message' => 'delete pasien sukses'
+            );
+        }else{
+            return array(
+                'status' => '500',
+                'message' => 'delete error'
+            );
+        }
     }
 }

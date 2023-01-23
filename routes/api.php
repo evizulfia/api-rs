@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\ObatController;
+use App\Http\Controllers\PasienController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +30,15 @@ Route::post('/dokter-store', [DokterController::class, 'store']);
 Route::post('/dokter-update/{id}', [DokterController::class, 'update']);
 Route::delete('/dokter-destroy/{id}', [DokterController::class, 'destroy']);
 Route::get('/dokter-search', [DokterController::class, 'search']);
+
+Route::get('/obat', [ObatController::class, 'index']);
+Route::post('/obat-store', [ObatController::class, 'store']);
+Route::post('/obat-update/{id}', [ObatController::class, 'update']);
+Route::delete('/obat-destroy/{id}', [ObatController::class, 'destroy']);
+Route::get('/obat-search', [ObatController::class, 'search']);
+
+Route::get('/pasien', [PasienController::class, 'index']);
+Route::post('/pasien-store', [PasienController::class, 'store']);
+Route::post('/pasien-update/{id}', [PasienController::class, 'update']);
+Route::delete('/pasien-destroy/{id}', [PasienController::class, 'destroy']);
+Route::get('/pasien-search', [PasienController::class, 'search']);

@@ -20,6 +20,19 @@ class PasienController extends Controller
 
     }
 
+     public function search(Request $request)
+    {
+        //
+        $pasien = Pasien::where('nama_pasien', 'like', '%'.$request->search.'%')
+                        ->orWhere('id_pasien', 'like', '%'.$request->search.'%')
+                        ->orWhere('alamat', 'like', '%'.$request->search.'%')
+                        ->orWhere('jenis_kelamin', 'like', '%'.$request->search.'%')
+                        ->orWhere('no_telepon', 'like', '%'.$request->search.'%')
+                        ->get();
+
+        return $pasien;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

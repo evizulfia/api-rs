@@ -20,6 +20,16 @@ class ObatController extends Controller
         return $obat;
     }
 
+    public function search(Request $request)
+    {
+        //
+        $obat = Obat::where('nama_obat', 'like', '%'.$request->search.'%')
+                        ->orWhere('id_obat', 'like', '%'.$request->search.'%')
+                        ->get();
+
+        return $obat;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

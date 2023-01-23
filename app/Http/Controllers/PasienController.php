@@ -59,7 +59,7 @@ class PasienController extends Controller
         if($pasien){
             $pasien->nama_pasien    = $request->nama_pasien;
             $pasien->alamat              = $request->alamat;
-            $pasien->tanggal_lahir       = $request->tanggal_lahir;
+            $pasien->tanggal_lahir       = date('Y-m-d',strtotime($request->tanggal_lahir));
             $pasien->jenis_kelamin       = $request->jenis_kelamin;
             $pasien->no_telepon          = $request->no_telepon;
             $pasien->save();
@@ -76,7 +76,7 @@ class PasienController extends Controller
             $pasien->id_pasien      = $request->id_pasien;
             $pasien->nama_pasien    = $request->nama_pasien;
             $pasien->alamat              = $request->alamat;
-            $pasien->tanggal_lahir       = $request->tanggal_lahir;
+            $pasien->tanggal_lahir       = date('Y-m-d',strtotime($request->tanggal_lahir));
             $pasien->jenis_kelamin       = $request->jenis_kelamin;
             $pasien->no_telepon          = $request->no_telepon;
             $pasien->save();

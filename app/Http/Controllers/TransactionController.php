@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Obat;
+use App\Models\Pasien;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {

@@ -71,12 +71,15 @@ class TransactionController extends Controller
         DB::beginTransaction();
        
             $transaction = new Transaction();
+            $transaction->id_transaction   = $request->id_transaction;
             $transaction->id_pasien   = $request->id_pasien;
+            $transaction->id_obat   = $request->id_obat;
             $transaction->nama_pasien   = $pasien->nama_pasien;
             $transaction->tanggal_transaksi       = date('Y-m-d',strtotime($request->tanggal_transaksi));
             $transaction->harga       = $request->harga;
             $transaction->diskon      = $request->diskon;
             $transaction->total       = $request->total;
+            $transaction->status       = $request->status;
             $transaction->save();
             
             $transaction->invoice              = 'INV'.date('DMY').$transaction->id_transaction;

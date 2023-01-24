@@ -54,5 +54,7 @@ Route::get('/rekammedis-search', [RekamMedisController::class, 'search']);
 Route::post('/transaction-store', [TransactionController::class, 'store']);
 Route::get('/laporan', [TransactionController::class, 'index']);
 Route::get('/laporan-search', [TransactionController::class, 'search']);
+Route::get('/laporan-search-byid', [TransactionController::class, 'search_byid']);
+Route::get('/laporan-search-bynama', [TransactionController::class, 'search_bynama']);
 
 

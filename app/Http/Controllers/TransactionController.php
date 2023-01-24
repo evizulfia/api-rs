@@ -29,12 +29,30 @@ class TransactionController extends Controller
         $transaction = Transaction::where('id_transaction', 'like', '%'.$request->search.'%')
                         ->orWhere('id_pasien', 'like', '%'.$request->search.'%')
                         ->orWhere('nama_pasien', 'like', '%'.$request->search.'%')
-                        // ->orWhere('invoice', 'like', '%'.$request->search.'%')
-                        // ->orWhere('harga', 'like', '%'.$request->search.'%')
-                        // ->orWhere('diskon', 'like', '%'.$request->search.'%')
-                        // ->orWhere('total', 'like', '%'.$request->search.'%')
+                        ->orWhere('invoice', 'like', '%'.$request->search.'%')
+                        ->orWhere('harga', 'like', '%'.$request->search.'%')
+                        ->orWhere('diskon', 'like', '%'.$request->search.'%')
+                        ->orWhere('total', 'like', '%'.$request->search.'%')
                         ->orWhere('status', 'like', '%'.$request->search.'%')
                         ->orWhere('tanggal_transaksi', 'like', '%'.$request->search.'%')
+                        ->get();
+
+        return $transaction;
+    }
+
+    public function search_byid(Request $request)
+    {
+        //
+        $transaction = Transaction::where('id_transaction', '=', $request->search)
+                        ->get();
+
+        return $transaction;
+    }
+
+    public function search_bynama(Request $request)
+    {
+        //
+        $transaction = Transaction::where('nama_pasien', 'like', '%'.$request->search.'%')
                         ->get();
 
         return $transaction;

@@ -41,6 +41,18 @@ class RekamMedisController extends Controller
     public function create()
     {
         //
+        
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
         $rekam_medis = $request->id_rekam_medis;
 
         $rekam_medis = RekamMedis::where('id_rekam_medis', $id_rekam_medis)->first();
@@ -94,17 +106,6 @@ class RekamMedisController extends Controller
             );
 
         }
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**

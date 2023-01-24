@@ -91,7 +91,12 @@ class TransactionController extends Controller
             $transaction = new Transaction();
             $transaction->id_transaction   = $request->id_transaction;
             $transaction->id_pasien   = $request->id_pasien;
-            $transaction->id_obat   = $request->id_obat;
+
+            $obat = Obat::where('id_obat', $request->id_obat)->first();
+            if($obat){
+                $transaction->id_obat   = $request->id_obat;
+            }
+
             $transaction->nama_pasien   = $pasien->nama_pasien;
             $transaction->tanggal_transaksi       = date('Y-m-d',strtotime($request->tanggal_transaksi));
             $transaction->harga       = $request->harga;

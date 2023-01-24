@@ -43,7 +43,7 @@ class TransactionController extends Controller
     public function searchById(Request $request)
     {
         //
-        $transaction = Transaction::where('id_transaction', 'like', '%'.$request->search.'%')                       
+        $transaction = Transaction::where('id_pasien', 'like', '%'.$request->search.'%')                       
                         ->get();
 
         return $transaction;

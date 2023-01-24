@@ -57,15 +57,8 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         //
-        $dokter = Dokter::where('id_dokter', $request->id_dokter)->first();
         $pasien = Pasien::where('id_pasien', $request->id_pasien)->first();
 
-        if(!$dokter){
-            return array(
-                'status' => '400',
-                'message' => 'Error, id dokter tidak ditemukan'
-            );
-        }
         if(!$pasien){
             return array(
                 'status' => '400',
@@ -77,7 +70,7 @@ class TransactionController extends Controller
        
             $transaction = new Transaction();
             $transaction->id_pasien   = $request->id_pasien;
-            $transaction->id_dokter   = $request->id_dokter;
+            $transaction->nama_pasien   = $pasien->nama_pasien;
             $transaction->tanggal_transaksi       = date('Y-m-d',strtotime($request->tanggal_transaksi));
             $transaction->harga       = $request->harga;
             $transaction->diskon      = $request->diskon;

@@ -30,9 +30,9 @@ class TransactionController extends Controller
                         ->orWhere('id_pasien', 'like', '%'.$request->search.'%')
                         ->orWhere('nama_pasien', 'like', '%'.$request->search.'%')
                         ->orWhere('invoice', 'like', '%'.$request->search.'%')
-                        ->orWhere('harga', 'like', '%'.$request->search.'%')
-                        ->orWhere('diskon', 'like', '%'.$request->search.'%')
-                        ->orWhere('total', 'like', '%'.$request->search.'%')
+                        // ->orWhere('harga', 'like', '%'.$request->search.'%')
+                        // ->orWhere('diskon', 'like', '%'.$request->search.'%')
+                        // ->orWhere('total', 'like', '%'.$request->search.'%')
                         ->orWhere('status', 'like', '%'.$request->search.'%')
                         ->orWhere('tanggal_transaksi', 'like', '%'.$request->search.'%')
                         ->get();

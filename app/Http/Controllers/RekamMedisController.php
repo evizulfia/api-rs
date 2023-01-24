@@ -53,7 +53,7 @@ class RekamMedisController extends Controller
     public function store(Request $request)
     {
         //
-        $rekam_medis = $request->id_rekam_medis;
+        $id_rekam_medis = $request->id_rekam_medis;
 
         $rekam_medis = RekamMedis::where('id_rekam_medis', $id_rekam_medis)->first();
 

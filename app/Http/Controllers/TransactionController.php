@@ -29,7 +29,7 @@ class TransactionController extends Controller
         $transaction = Transaction::where('id_transaction', 'like', '%'.$request->search.'%')
                         ->orWhere('id_pasien', 'like', '%'.$request->search.'%')
                         ->orWhere('nama_pasien', 'like', '%'.$request->search.'%')
-                        ->orWhere('invoice', 'like', '%'.$request->search.'%')
+                        // ->orWhere('invoice', 'like', '%'.$request->search.'%')
                         // ->orWhere('harga', 'like', '%'.$request->search.'%')
                         // ->orWhere('diskon', 'like', '%'.$request->search.'%')
                         // ->orWhere('total', 'like', '%'.$request->search.'%')

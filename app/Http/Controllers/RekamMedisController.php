@@ -75,6 +75,7 @@ class RekamMedisController extends Controller
 
         if($rekam_medis){
             $rekam_medis->id_dokter         = $request->id_dokter;
+            $rekam_medis->id_pasien         = $request->id_pasien;
             $rekam_medis->id_rekam_medis         = $request->id_rekam_medis;
             $rekam_medis->tanggal_periksa   = date('Y-m-d',strtotime($request->tanggal_periksa));
             $rekam_medis->diagnosa          = $request->diagnosa;
@@ -92,6 +93,7 @@ class RekamMedisController extends Controller
             $rekam_medis = new RekamMedis();
             $rekam_medis->id_rekam_medis      = $request->id_rekam_medis;
             $rekam_medis->id_dokter         = $request->id_dokter;
+            $rekam_medis->id_pasien         = $request->id_pasien;
             $rekam_medis->id_rekam_medis         = $request->id_rekam_medis;
             $rekam_medis->tanggal_periksa   = date('Y-m-d',strtotime($request->tanggal_periksa));
             $rekam_medis->diagnosa          = $request->diagnosa;

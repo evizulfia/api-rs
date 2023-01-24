@@ -131,7 +131,7 @@ class TransactionController extends Controller
                 return array(
                     'status' => '200',
                     'message' => 'insert transaction sukses',
-                    'data' => $pasien
+                    'data' => $transaction
                 );
             } catch (\Throwable $th) {
                 //throw $th;

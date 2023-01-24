@@ -40,6 +40,15 @@ class TransactionController extends Controller
         return $transaction;
     }
 
+    public function searchById(Request $request)
+    {
+        //
+        $transaction = Transaction::where('id_transaction', 'like', '%'.$request->search.'%')                       
+                        ->get();
+
+        return $transaction;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -79,31 +88,35 @@ class TransactionController extends Controller
             $transaction->total       = $request->total;
             $transaction->save();
             
-            $transaction->invoice              = 'INV'.date('DMY').$transaction->id_transaction;
+            $transaction->invoice              = 'INV'.date('.dmY.').$transaction->id_transaction;
             $transaction->save();
 
             try {
                 //code...
-                foreach(json_decode($request->item) as $row){
-                    $item = new TransactionDetail();
+                if ($request->item ?? FALSE) {
 
-                    $item->id_transaction = $transaction->id_transaction;
-                    $item->id_obat  = $row->id_obat;
-                    $item->qty      = $row->qty;
+                    foreach (json_decode($request->item) as $row) {
+                        $item = new TransactionDetail();
 
-                    $obat = Obat::where('id_obat', $row->id_obat)->first();
-                    if(!$obat){
-                        return array(
-                            'status' => '400',
-                            'message' => 'Error, id obat tidak ditemukan'
-                        );
-                    }else{
-                        $item->harga = $obat->harga;
-                        $item->nama_obat = $obat->nama_obat;
-                        $item->total    = $obat->harga*$row->qty;
+                        $item->id_transaction = $transaction->id_transaction;
+                        $item->id_obat = $row->id_obat;
+                        $item->qty = $row->qty;
+
+                        $obat = Obat::where('id_obat', $row->id_obat)->first();
+                        if (!$obat) {
+                            return array(
+                                'status' => '400',
+                                'message' => 'Error, id obat tidak ditemukan'
+                            );
+                        } else {
+                            $item->harga = $obat->harga;
+                            $item->nama_obat = $obat->nama_obat;
+                            $item->total = $obat->harga * $row->qty;
+                        }
+
+                        $item->save();
                     }
 
-                    $item->save();
                 }
 
                 DB::commit();

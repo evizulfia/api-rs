@@ -105,31 +105,44 @@ class TransactionController extends Controller
             $transaction->status       = $request->status;
             $transaction->save();
             
-            $transaction->invoice              = 'INV'.date('DMY').$transaction->id_transaction;
+            $transaction->invoice              = 'INV.'.date('dmY').'.'.$transaction->id_transaction;
             $transaction->save();
+
+
+            DB::commit();
+                return array(
+                    'status' => '200',
+                    'message' => 'insert transaction sukses',
+                    'data' => $transaction
+                );
 
             try {
                 //code...
-                foreach(json_decode($request->item) as $row){
-                    $item = new TransactionDetail();
 
-                    $item->id_transaction = $transaction->id_transaction;
-                    $item->id_obat  = $row->id_obat;
-                    $item->qty      = $row->qty;
+                 DB::beginTransaction();
 
-                    $obat = Obat::where('id_obat', $row->id_obat)->first();
-                    if(!$obat){
-                        return array(
-                            'status' => '400',
-                            'message' => 'Error, id obat tidak ditemukan'
-                        );
-                    }else{
-                        $item->harga = $obat->harga;
-                        $item->nama_obat = $obat->nama_obat;
-                        $item->total    = $obat->harga*$row->qty;
+                if($request->item){
+                    foreach(json_decode($request->item) as $row){
+                        $item = new TransactionDetail();
+
+                        $item->id_transaction = $transaction->id_transaction;
+                        $item->id_obat  = $row->id_obat;
+                        $item->qty      = $row->qty;
+
+                        $obat = Obat::where('id_obat', $row->id_obat)->first();
+                        if(!$obat){
+                            return array(
+                                'status' => '400',
+                                'message' => 'Error, id obat tidak ditemukan'
+                            );
+                        }else{
+                            $item->harga = $obat->harga;
+                            $item->nama_obat = $obat->nama_obat;
+                            $item->total    = $obat->harga*$row->qty;
+                        }
+
+                        $item->save();
                     }
-
-                    $item->save();
                 }
 
                 DB::commit();

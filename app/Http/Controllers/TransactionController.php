@@ -98,13 +98,12 @@ class TransactionController extends Controller
                 $transaction->harga = $obat->harga;
                 $transaction->nama_obat = $obat->nama_obat;
                 $transaction->total    = $obat->harga*$request->qty;
-            }
 
+            }
+            
             $transaction->nama_pasien   = $pasien->nama_pasien;
             $transaction->tanggal_transaksi       = date('Y-m-d',strtotime($request->tanggal_transaksi));
-            $transaction->harga       = $request->harga;
-            $transaction->diskon      = $request->diskon;
-            $transaction->total       = $request->total;
+           
             $transaction->status       = $request->status;
             $transaction->save();
             

@@ -97,6 +97,7 @@ class TransactionController extends Controller
                 $transaction->id_obat       = $request->id_obat;
                 $transaction->harga         = $obat->harga;
                 $transaction->nama_obat     = $obat->nama_obat;
+                $transaction->qty           = $request->qty;
                 $transaction->total         = $obat->harga*$request->qty;
 
             }

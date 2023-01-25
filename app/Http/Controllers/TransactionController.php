@@ -95,6 +95,9 @@ class TransactionController extends Controller
             $obat = Obat::where('id_obat', $request->id_obat)->first();
             if($obat){
                 $transaction->id_obat   = $request->id_obat;
+                $transaction->harga = $obat->harga;
+                $transaction->nama_obat = $obat->nama_obat;
+                $transaction->total    = $obat->harga*$request->qty;
             }
 
             $transaction->nama_pasien   = $pasien->nama_pasien;
